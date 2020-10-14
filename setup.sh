@@ -5,11 +5,6 @@ mkdir ~/.ssh #to store some keys
 loggedInUser=$( scutil <<< "show State:/Users/ConsoleUser" | awk -F': ' '/[[:space:]]+Name[[:space:]]:/ { if ( $2 != "loginwindow" ) { print $2 }}' )
 # trigger xcode installation
 xcode-select --install
-echo "When Xcode installation is completed, Press ENTER to continue"
-read
-
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
 
 echo "Downloading and installing Brew"
 yes '' | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -18,16 +13,43 @@ brew install wget
 brew install python3
 ln -s /usr/local/bin/python3 /usr/local/bin/python
 
-brew cask install google-Chrome
+
+brew cask install adobe-creative-cloud
+brew cask install adobe-acrobat-pro
+brew cask install archiver
+brew cask install atom
+brew cask install cleanmymac
+brew cask install 1Password
+brew cask install discord
+brew cask install epic-games
+brew cask install cyberduck
+brew cask install github
+brew cask install google-chrome
+brew cask install google-drive-file-stream
+brew cask install keybase
+brew cask install kindle
+brew cask install mactracker
+brew cask install microsoft-office
+brew cask install microsoft-teams
+brew cask install openvpn-connect
+brew cask install profilecreator
+brew cask install sequel-pro
+brew cask install shadow
+brew cask install spotify
 brew cask install firefox
 brew cask install slack
-brew cask install discord
-brew cask install 1Password
-brew cask install atom
-brew cask install archiver
-brew cask install cleanmymac
-brew cask install cyberduck
+brew cask install visual-studio-code
+brew cask install stream
+brew cask install teamviewer
+brew cask install telegram
+brew cask install vlc
+brew cask install vmware-fusion
+brew cask install whatsapp
+brew cask install zoomus
 
+
+brew install defaultbrowser
+defaultbrowser chrome
 
 # save to disk (not iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
@@ -36,6 +58,12 @@ defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+# Show path and status bar in Finder
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowPathbar -bool true
+# Empty Bin every 30 days
+defaults write com.apple.finder FXRemoveOldTrashItems -bool true
 # Disable smart quotes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable smart dashes as they’re annoying when typing code
@@ -62,15 +90,11 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Keep folders on top when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
-# Finder: show status bar
-defaults write com.apple.finder ShowStatusBar -bool true
-# Finder: show path bar
-defaults write com.apple.finder ShowPathbar -bool true
 # Use list view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
-# Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+# Set the icon size of Dock items to 42 pixels
+defaults write com.apple.dock tilesize -int 42
 # TextEdit developer settings
 defaults write com.apple.TextEdit RichText -int 0
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
@@ -104,36 +128,8 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 
 killall Dock
 killall Finder
+killAll cfprefsd
 killall SystemUIServer
 
 sudo softwareupdate --schedule on
-
-
-cat <<-EOF > ~/.aliases.sh
-alias myip='curl ifconfig.co'
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
-alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
-
-alias showall='defaults write com.apple.finder AppleShowAllFiles -bool TRUE && killall Finder'
-alias hideall='defaults write com.apple.finder AppleShowAllFiles -bool FALSE && killall Finder'
-
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup;'
-
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend" # or use >  pmset displaysleepnow
-
-# Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
-# (useful when executing time-consuming commands)
-alias badge="tput bel"
-
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume 7'"
-EOT
-
-echo 'source "~/.aliases.sh"  ' >>~/.zshrc 
-
-echo "All done! Press something to continue"
-read
-
 exit 0
