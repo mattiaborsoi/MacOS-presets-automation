@@ -124,6 +124,8 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 # macOS: Display additional information on the loginscreen for 60 seconds
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+# macOS: set the date and time format to display Thu 18 Aug 23:46 on the menu bar
+defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM HH:mm"
 
 
 killall Dock
