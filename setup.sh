@@ -1,55 +1,46 @@
 
 #!/bin/sh
 mkdir ~/.ssh #to store some keys
-# Getting current logged in user
-loggedInUser=$( scutil <<< "show State:/Users/ConsoleUser" | awk -F': ' '/[[:space:]]+Name[[:space:]]:/ { if ( $2 != "loginwindow" ) { print $2 }}' )
-# trigger xcode installation
-xcode-select --install
 
 echo "Downloading and installing Brew"
-yes '' | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew cask
+yes '' | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install wget
 brew install python3
-ln -s /usr/local/bin/python3 /usr/local/bin/python
 
-
-brew cask install adobe-creative-cloud
-brew cask install adobe-acrobat-pro
-brew cask install archiver
-brew cask install atom
-brew cask install cleanmymac
-brew cask install 1Password
-brew cask install discord
-brew cask install epic-games
-brew cask install cyberduck
-brew cask install github
-brew cask install google-chrome
-brew cask install google-drive-file-stream
-brew cask install keybase
-brew cask install kindle
-brew cask install mactracker
-brew cask install microsoft-office
-brew cask install microsoft-teams
-brew cask install openvpn-connect
-brew cask install profilecreator
-brew cask install sequel-pro
-brew cask install shadow
-brew cask install spotify
-brew cask install firefox
-brew cask install slack
-brew cask install visual-studio-code
-brew cask install stream
-brew cask install teamviewer
-brew cask install telegram
-brew cask install vlc
-brew cask install vmware-fusion
-brew cask install whatsapp
-brew cask install zoomus
-
-
+brew install atom
+brew install 1Password
+brew install cyberduck
+brew install github
+brew install google-chrome
+brew install google-drive-file-stream
+brew install keybase
+brew install microsoft-office
+brew install microsoft-teams
+brew install openvpn-connect
+brew install sequel-pro
+brew install spotify
+brew install firefox
+brew install slack
+brew install visual-studio-code
+brew install teamviewer
+brew install vlc
+brew install vmware-fusion
+brew install zoomus
 brew install defaultbrowser
 defaultbrowser chrome
+
+brew install adobe-creative-cloud
+brew install adobe-acrobat-pro
+brew install archiver
+brew install whatsapp
+brew install telegram
+brew install shadow
+brew install profilecreator
+brew install kindle
+brew install mactracker
+brew install discord
+brew install epic-games
+brew install cleanmymac
 
 # save to disk (not iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
