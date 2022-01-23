@@ -1,46 +1,54 @@
-
 #!/bin/sh
 mkdir ~/.ssh #to store some keys
 
 echo "Downloading and installing Brew"
 yes '' | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install wget
-brew install python3
 
+#default apps
 brew install atom
 brew install 1Password
-brew install cyberduck
-brew install github
-brew install google-chrome
-brew install google-drive-file-stream
 brew install keybase
-brew install microsoft-office
-brew install microsoft-teams
-brew install openvpn-connect
-brew install sequel-pro
-brew install spotify
-brew install firefox
 brew install slack
 brew install visual-studio-code
-brew install teamviewer
-brew install vlc
-brew install vmware-fusion
-brew install zoomus
+brew install google-chrome
 brew install defaultbrowser
 defaultbrowser chrome
+brew remove defaultbrowser
+brew install spotify
 
+#work apps
+brew install google-drive-file-stream
+brew install cyberduck
+brew install microsoft-teams
+brew install docker
+brew install microsoft-office
+brew install openvpn-connect
+brew install sequel-pro
+brew install microsoft-office
+brew install github
+brew install zoomus
+
+#personal apps
 brew install adobe-creative-cloud
 brew install adobe-acrobat-pro
 brew install archiver
+brew install burp-suite
 brew install whatsapp
 brew install telegram
-brew install shadow
-brew install profilecreator
 brew install kindle
 brew install mactracker
 brew install discord
 brew install epic-games
 brew install cleanmymac
+brew install teamviewer
+brew install vlc
+brew install --cask nvidia-geforce-now
+
+brew install cheat
+brew install bat
+
+
 
 # save to disk (not iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
